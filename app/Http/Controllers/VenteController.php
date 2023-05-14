@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Vente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class VenteController extends Controller
 {
@@ -36,11 +37,17 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        if(Vente::create($request->all()))
-        {
-         $lastVente = DB::table('ventes')->latest()->first();
-             return response()->json(array('message' => 'Vente ajoutée avec succès', 'vente_id' => $lastVente->id), 200);
-        }
+        $validated = $request->validate([
+            'user_id' => 'required|integer',
+            'montant_total' => 'required|integer',
+            'etat' => 'required|string'
+        ]);
+
+        $vente = Vente::create($validated);
+        
+        $lastVente = DB::table('ventes')->latest()->first();
+
+        return response()->json(['message' => 'Vente enregistrée avec succès', 'vente' => $vente]);
     }
 
     /**

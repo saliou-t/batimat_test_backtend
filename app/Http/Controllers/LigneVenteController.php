@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\LigneVente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class LigneVenteController extends Controller
 {
@@ -24,7 +25,6 @@ class LigneVenteController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -35,7 +35,18 @@ class LigneVenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'produit_id' => 'required|integer',
+            'vente_id' => 'required|integer',
+            'quantite' => 'required|integer'
+        ]);
+
+        $vente = LigneVente::create($validated);
+        
+        $lastLigne = DB::table('ligne_ventes')->latest()->first();
+
+        return response()->json(['message' => 'Ligne enregistrée avec succès', 'ligne' => $lastLigne]);
+
     }
 
     /**

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->foreignId('user_id')->constrained();
             $table->unsignedInteger('montant_total');
-            $table->enum('etat', ['Paye', 'Annuler', 'Abandonne']);
+            $table->enum('etat', ['Paye', 'Annuler', 'Abandonne', 'Enregistre']);
             $table->timestamps();
         });
     }

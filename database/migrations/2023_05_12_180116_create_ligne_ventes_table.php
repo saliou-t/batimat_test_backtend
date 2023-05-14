@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('ligne_ventes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('produit_id')->constrained();
+            $table->unsignedInteger('quantite')->nullable();
             $table->foreignId('vente_id')->constrained();
             $table->timestamps();
         });

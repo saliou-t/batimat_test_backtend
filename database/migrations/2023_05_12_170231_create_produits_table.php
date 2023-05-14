@@ -17,10 +17,11 @@ return new class extends Migration
             
             $table->bigIncrements('id');
             $table->string('reference')->unique();
-            $table->string('code_barre')->unique();
+            $table->string('code_barre')->unique()->nullable();
             $table->string('designation');
             $table->string('image')->nullable();
             $table->unsignedInteger('quantite_disponible');
+            $table->unsignedInteger('quantite_initiale')->default(0);
             $table->unsignedInteger('prix_unitaire');
             $table->enum('etat', ['Stock', 'Rupture']);
             

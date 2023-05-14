@@ -14,7 +14,8 @@ class VenteController extends Controller
      */
     public function index()
     {
-        //
+        $vente = Vente::OrderBy('id')->get();
+        return $vente->toJson(JSON_PRETTY_PRINT);
     }
 
     /**
@@ -35,7 +36,11 @@ class VenteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        if(Vente::create($request->all()))
+        {
+         $lastVente = DB::table('ventes')->latest()->first();
+             return response()->json(array('message' => 'Vente ajoutée avec succès', 'vente_id' => $lastVente->id), 200);
+        }
     }
 
     /**

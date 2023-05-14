@@ -35,7 +35,7 @@ class PaiementController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

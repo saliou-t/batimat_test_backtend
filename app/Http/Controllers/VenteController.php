@@ -8,6 +8,18 @@ use Illuminate\Support\Facades\DB;
 
 class VenteController extends Controller
 {
+
+    /**
+     * Display a listing of the resource by user_id.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserVentes($user_id)
+    {
+        $ventes = Vente::where('user_id', $user_id)->get();
+        return response()->json(['ventes' => $ventes], 200);
+    }
+    
     /**
      * Display a listing of the resource.
      *

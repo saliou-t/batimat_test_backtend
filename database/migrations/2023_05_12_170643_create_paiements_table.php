@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('paiements', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numero')->unique();
             $table->enum('moyen_de_paiment', ['CHEQUE', 'ESPECE','CARTE_BANCAIRE']);
-            $table->unsignedInteger('montant');
             $table->foreignId('vente_id')->constrained();
             $table->date('date_enregistrement')->nullable();
-            $table->enum('etat', ['Termine', 'Annule','En_cours']);
+            $table->enum('etat', ['Termine', 'Annule','En_cours','Enregistre'])->default('Enregistre');
             
             $table->timestamps();
         });

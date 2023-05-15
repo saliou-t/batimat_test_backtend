@@ -21,7 +21,7 @@ class VenteController extends Controller
     }
     
     /**
-     * Display a listing of the resource.
+     * Display a listing of the resource(All).
      *
      * @return \Illuminate\Http\Response
      */
@@ -52,7 +52,6 @@ class VenteController extends Controller
         $validated = $request->validate([
             'user_id' => 'required|integer',
             'montant_total' => 'required|integer',
-            'etat' => 'required|string'
         ]);
 
         $vente = Vente::create($validated);

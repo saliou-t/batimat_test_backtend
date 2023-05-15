@@ -15,6 +15,5 @@ class Paiement extends Model
         'vente_id',
         'date_enregistrement',
         'etat',
-        'montant'
     ];
 }

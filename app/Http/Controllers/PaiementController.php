@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paiement;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PaiementController extends Controller
 {
@@ -24,7 +25,7 @@ class PaiementController extends Controller
      */
     public function create()
     {
-        //
+       
     }
 
     /**
@@ -35,7 +36,18 @@ class PaiementController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'numero' => 'required|string',
+            'vente_id' => 'required|integer',
+            'moyen_de_paiment' => 'required|string',
+            'etat' => 'required|string'
+        ]);
+
+        $paiement = Paiement::create($validated);
         
+        $lastVente = DB::table('paiements')->latest()->first();
+
+        return response()->json(['message' => 'Paiement enregistré avec succès', 'paiement' => $paiement]);
     }
 
     /**

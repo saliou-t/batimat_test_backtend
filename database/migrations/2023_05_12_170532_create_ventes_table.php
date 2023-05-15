@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('ventes', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('numero')->unique();
             $table->foreignId('user_id')->constrained();
             $table->unsignedInteger('montant_total');
             $table->timestamps();

@@ -51,6 +51,7 @@ class VenteController extends Controller
     {
         $validated = $request->validate([
             'user_id' => 'required|integer',
+            'numero' => 'required|string',
             'montant_total' => 'required|integer',
         ]);
 

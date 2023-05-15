@@ -17,7 +17,7 @@ class PaiementController extends Controller
     public function getUserPaiementByUser($user_id)
     {
         $paiements =  Paiement::join('ventes', 'ventes.id', '=', 'paiements.vente_id')
-                                ->where('ventes.user_id', 1)
+                                ->where('ventes.user_id', $user_id)
                                 ->where('paiements.etat', 'Termine')
                                 ->get();
 

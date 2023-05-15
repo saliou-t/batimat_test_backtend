@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\Paiement;
 use App\Models\LigneVente;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,8 +19,6 @@ class Vente extends Model
         'montant_total',
     ];
 
-
-
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -28,5 +27,10 @@ class Vente extends Model
     public function lignes()
     {
         return $this->hasMany(LigneVente::class);
+    }
+
+    public function paiement()
+    {
+        return $this->hasOne(Paiement::class);
     }
 }

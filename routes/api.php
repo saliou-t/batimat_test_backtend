@@ -24,7 +24,7 @@ Route::controller(AuthController::class)->group(function () {
     
 });
 //route pour récupéerer les vente faites par un utilisateur en fonction de user_id
-Route::get('/user-vente/{user_id}', [VenteController::class, 'getUserVentes']);
+Route::get('/user-vente-non-payer/{user_id}', [VenteController::class, 'getUserVentesNotPayed']);
 
 Route::apiResources([
     'produit' => ProduitController::class,

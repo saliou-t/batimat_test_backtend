@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Vente;
+use App\Models\Ticket;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Paiement extends Model
 {
@@ -16,4 +18,15 @@ class Paiement extends Model
         'date_enregistrement',
         'etat',
     ];
+    
+
+    public function vente()
+    {
+        return $this->belongsTo(Vente::class);
+    }
+
+    public function ticket()
+    {
+        return $this->hasOne(Ticket::class);
+    }
 }

@@ -81,7 +81,15 @@ class PaiementController extends Controller
      */
     public function update(Request $request, Paiement $paiement)
     {
-        //
+        if ($paiement->update($request->all())) {
+            return response()->json(['message'=>
+                'Le paiement a été modifié avec succès', 'paiement' => $paiement] , 200,);
+        }else{
+            return response()->json(
+                [
+                    'message'=>'Echec de la mise à jour du paiement !',
+                ], 500);
+        }
     }
 
     /**

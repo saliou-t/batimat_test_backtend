@@ -8,6 +8,23 @@ use Illuminate\Support\Facades\DB;
 
 class PaiementController extends Controller
 {
+
+    /**
+     * return paiements by user ID.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getUserPaiementByUser($user_id)
+    {
+        $paiements =  Paiement::join('ventes', 'ventes.id', '=', 'paiements.vente_id')
+                                ->where('ventes.user_id', 1)
+                                ->where('paiements.etat', 'Termine')
+                                ->get();
+
+        return response()->json(['paiements' => $paiements], 200);
+    }
+
+
     /**
      * Display a listing of the resource.
      *

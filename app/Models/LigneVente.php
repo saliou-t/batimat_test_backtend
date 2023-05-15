@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Vente;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class LigneVente extends Model
 {
@@ -15,4 +16,9 @@ class LigneVente extends Model
         'vente_id',
         'prix_unitaire',
     ];
+
+    public function vente()
+    {
+        return $this->belongsTo(Vente::class);
+    }
 }

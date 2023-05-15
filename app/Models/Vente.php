@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\User;
+use App\Models\LigneVente;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -12,16 +13,20 @@ class Vente extends Model
 
     protected $fillable = [
         'user_id',
-        'created_at',
+        'numero',
         'vente_id',
-        'date_enregistrement',
         'montant_total',
-        'etat',
     ];
+
 
 
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function lignes()
+    {
+        return $this->hasMany(LigneVente::class);
     }
 }

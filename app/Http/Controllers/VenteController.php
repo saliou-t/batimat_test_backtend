@@ -16,7 +16,7 @@ class VenteController extends Controller
      */
     public function getUserVentes($user_id)
     {
-        $ventes = Vente::where('user_id', $user_id)->get();
+        $ventes = Vente::with(['lignes'])->where('user_id', $user_id)->get();
         return response()->json(['ventes' => $ventes], 200);
     }
     

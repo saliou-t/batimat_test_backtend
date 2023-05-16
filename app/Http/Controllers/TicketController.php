@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Ticket;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TicketController extends Controller
 {
@@ -40,7 +41,14 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'paiement_id' => 'required|integer',
+            'nom_complet_beneficiaire' => 'required|string',
+        ]);
+
+        $ticket = Ticket::create($validated);
+
+        return response()->json(['message' => 'Ticket enregistré avec succès', 'ticket' => $ticket]);
     }
 
     /**

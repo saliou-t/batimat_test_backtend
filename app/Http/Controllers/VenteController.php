@@ -30,6 +30,20 @@ class VenteController extends Controller
         return response()->json(['ventes' => $ventes], 200);
     }
 
+
+    /**
+     * Display a listing of the resource by user_id where paiement.etat == 'Enregistre' => c'est-à-dire lorsque le paiement n'est pas encore effectué.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getAllUserVentes($user_id)
+    {
+        $ventes = Vente::with(['lignes','lignes.produit','paiement'])
+                        ->where('user_id', $user_id)
+                        ->get();
+        return response()->json(['ventes' => $ventes], 200);
+    }
+
        /**
      * Display a listing of the resource by user_id where paiement.etat == 'Termine' => c'est-à-dire lorsque le paiement effectué.
      *

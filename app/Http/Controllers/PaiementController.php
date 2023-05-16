@@ -20,12 +20,12 @@ class PaiementController extends Controller
      */
     public function getUserPaiementByUser($user_id)
     {
-        $paiements =  Paiement::join('ventes', 'ventes.id', '=', 'paiements.vente_id')
+        $paiement =  Paiement::join('ventes', 'ventes.id', '=', 'paiements.vente_id')
                                 ->where('ventes.user_id', $user_id)
                                 ->where('paiements.etat', 'Termine')
                                 ->get();
 
-        return response()->json(['paiements' => $paiements], 200);
+        return response()->json(['paiement' => $paiement], 200);
     }
 
 

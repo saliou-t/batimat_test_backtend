@@ -23,10 +23,13 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('refresh', 'refresh');
     
 });
+
 //route pour récupéerer les vente faites par un utilisateur en fonction de user_id
 Route::get('/user-vente-non-payer/{user_id}', [VenteController::class, 'getUserVentesNotPayed']);
 Route::get('/user-vente-payer/{user_id}', [VenteController::class, 'getUserVentesPayed']);
+Route::get('/user-all-ventes/{user_id}', [VenteController::class, 'getAllUserVentes']);
 Route::get('/user-paiements/{user_id}', [PaiementController::class, 'getUserPaiementByUser']);
+
 
 Route::apiResources([
     'produit' => ProduitController::class,

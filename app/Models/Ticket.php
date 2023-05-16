@@ -12,8 +12,7 @@ class Ticket extends Model
     protected $fillable = [
         'nom_complet_beneficiaire',
         'paiement_id',
-        'numero_beneficiaire',
-        'total',
+        'telephone_beneficiaire',
     ];
 
     public function paiement()

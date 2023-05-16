@@ -16,9 +16,10 @@ return new class extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->foreignId('paiement_id')->constrained()->onDelete('cascade');
-            $table->string('nom_complet_beneficiaire')->unique();
-            $table->string('numero_beneficiaire')->unique();
-            $table->unsignedInteger('total');
+            $table->string('nom_complet_beneficiaire');
+            $table->string('telephone_beneficiaire')->unique()->nullable();
+            $table->string('email_beneficiaire')->unique()->nullable();
+            $table->string('adresse_beneficiaire')->nullable();
 
             $table->timestamps();
         });

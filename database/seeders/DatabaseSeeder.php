@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\User;
 use App\Models\Produit;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -35,5 +37,11 @@ class DatabaseSeeder extends Seeder
             
             $produit->save();
         }
+        //un seeder pour se connecter
+        User::factory()->create([
+            'name' => "mama saliou",
+            'email' => 'mameSaliou@gmail.com',
+            'password' => Hash::make('password12'),
+        ]);  
     }
 }

@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\DB;
 class VenteController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     /**
      * Display a listing of the resource by user_id where paiement.etat == 'Enregistre' => c'est-à-dire lorsque le paiement n'est pas encore effectué.
      *

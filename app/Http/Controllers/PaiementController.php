@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 class PaiementController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * return paiements by user ID.
      *
